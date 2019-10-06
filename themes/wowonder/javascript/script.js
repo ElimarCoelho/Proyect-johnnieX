@@ -1,13 +1,17 @@
+/*jslint browser: true*/
+/*global $, jQuery, alert*/
+
 current_notification_number = 0;
 current_notification_number = 0;
 current_messages_number = 0;
 current_follow_requests_number = 0;
 
+
 current_width = $(window).width();
 document_title = document.title;
 
 
-$(document).on('click', '.filterby li.filter-by-li', function(event) {
+$(document).on('click', '.filterby li.filter-by-li', function (event) {
   $('.filterby li.filter-by-li').each(function(){
     $(this).removeClass('avtive');
     $(this).find('i').addClass('hidden');
