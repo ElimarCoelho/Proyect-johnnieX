@@ -75,7 +75,7 @@ if (!empty($user_stories)) {
         </div>
         
 		
-		<?php if ($wo['config']['pro'] == 1) { ?>
+		<!--<?php if ($wo['config']['pro'] == 1) { ?>
 		<div class="featured-users">
 			<ul class="list-group" style="margin-bottom: 0;background: transparent;box-shadow: none !important;">
 				<?php if ($wo['user']['is_pro'] == 0) { ?>
@@ -96,7 +96,7 @@ if (!empty($user_stories)) {
 			?>
 			</ul>
 		</div>
-		<?php } ?>
+		<?php } ?>-->
 	  
         <?php 
         if ($wo['config']['pages'] == 1) {
@@ -239,7 +239,7 @@ if (!empty($user_stories)) {
                 </form>
             </li>
         </ul>
-        <?php if ($wo['config']['classified'] == 1): ?>
+        <!--<?php if ($wo['config']['classified'] == 1): ?>
         <div id="sidebar-latest-products" class="sidebar-latest-products">
             <?php $get_latest_products = Wo_GetProducts(array('limit' => 6)); ?>
             <ul class="list-group">
@@ -258,7 +258,7 @@ if (!empty($user_stories)) {
 				</div>
             </ul>
         </div>
-        <?php endif ?>
+        <?php endif ?>-->
         <div id="sidebar-sticky">
             <?php $activities = Wo_GetActivities();?>
             <ul class="list-group activity-container">

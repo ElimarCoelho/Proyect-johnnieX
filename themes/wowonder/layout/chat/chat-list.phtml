@@ -11,7 +11,7 @@
 					$json = json_decode(trim(htmlspecialchars_decode($wo['chatMessage']['text'])), true);
 					echo $json['Value'] . ' (' . $json['Key'] . ')';
 				?>
-				<?php else: echo $wo['chatMessage']['text']; endif;?>
+				<?php else: echo $wo['chatMessage']['text']; endif; ?>
 			</p>
 		<?php endif ?>
 		<div class="clear"></div>
