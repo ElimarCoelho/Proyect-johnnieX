@@ -33,89 +33,14 @@ if (!empty($user_stories)) {
 						<p>@<?php echo $wo['user']['username']?></p>
                     </div>
                 </div>
-				
-				<ul class="wo_user_side_info">
-					<li>
-						<a class="menu_list" href="<?php echo Wo_SeoLink('index.php?link1=timeline&u=' . $wo['user']['username']);?>" data-ajax="?link1=timeline&u=<?php echo $wo['user']['username'];?>">
-							<span class="split-link"><b><?php echo $wo['lang']['posts']; ?></b></span>
-							<span id="user_post_count"><?php echo $wo['user']['details']['post_count'];?></span>
-						</a>
-					</li>
-					<?php if ($wo['config']['connectivitySystem'] == 1) {?>
-					<li>
-						<a class="menu_list" href="<?php echo Wo_SeoLink('index.php?link1=albums&user=' . $wo['user']['username']);?>" data-ajax="?link1=albums&user=<?php echo $wo['user']['username'];?>">
-							<span class="split-link"><b><?php echo $wo['lang']['albums'];?></b></span>
-							<span><?php echo $wo['user']['details']['album_count'];?></span>
-						</a>
-					</li>
-					<li>
-						<a class="menu_list" href="<?php echo Wo_SeoLink('index.php?link1=timeline&u=' . $wo['user']['username'] . '&type=followers');?>" data-ajax="?link1=timeline&u=<?php echo $wo['user']['username']?>&type=followers">
-							<span class="split-link"><b><?php echo $wo['lang']['friends_btn'];?></b></span>
-							<span><?php echo $wo['user']['details']['following_count'];?></span>
-						</a>
-					</li>	
-					<?php } ?>
-		
-					<?php if ($wo['config']['connectivitySystem'] == 0) {?>
-					<li>
-						<a class="menu_list" href="<?php echo Wo_SeoLink('index.php?link1=timeline&u=' . $wo['user']['username'] . '&type=following');?>" data-ajax="?link1=timeline&u=<?php echo $wo['user']['username']?>&type=following">
-							<span class="split-link"><b><?php echo $wo['lang']['following'];?></b></span>
-							<span><?php echo $wo['user']['details']['following_count'];?></span>
-						</a>
-					</li>
-					<li>
-						<a class="menu_list" href="<?php echo Wo_SeoLink('index.php?link1=timeline&u=' . $wo['user']['username'] . '&type=followers');?>" data-ajax="?link1=timeline&u=<?php echo $wo['user']['username']?>&type=followers">
-							<span class="split-link"><b><?php echo $wo['lang']['followers'];?></b></span>
-							<span><?php echo $wo['user']['details']['followers_count'];?></span>
-						</a>
-					</li>
-					<?php } ?>
-				</ul>
             </div>
         </div>
         
-		
-		<?php if ($wo['config']['pro'] == 1) { ?>
-		<div class="featured-users">
-			<ul class="list-group" style="margin-bottom: 0;background: transparent;box-shadow: none !important;">
-				<?php if ($wo['user']['is_pro'] == 0) { ?>
-					<li class="pro-me-here pull-right"><a href="<?php echo Wo_SeoLink('index.php?link1=go-pro');?>"><?php echo $wo['lang']['put_me_here'];?></a></li>
-				<?php } ?>
-				<li class="list-group-item text-muted sidebar-title-back" contenteditable="false" style="background: transparent;color: #fff;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #e13c4c;fill: #e13c4c;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> <?php echo $wo['lang']['pro_members'];?> 
-				</li>
-			</ul>
-			<ul class="list-inline wo_pro_users">
-			<?php 
-			$users = Wo_FeaturedUsers(6);
-			?>
-			<?php 
-			foreach ($users as $wo['user-list']) {
-              echo Wo_LoadPage('home/user-list');
-			}
-			?>
-			</ul>
-		</div>
-		<?php } ?>
 	  
         <?php 
         if ($wo['config']['pages'] == 1) {
         $promoted_page = Wo_GetPromotedPage();
         if (count($promoted_page) > 0) { ?>
-        <ul class="list-group">
-            <li class="list-group-item text-muted sidebar-title-back" contenteditable="false">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #FF9800;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> <?php echo $wo['lang']['promoted'];?> 
-            </li>
-            <li>
-            <?php 
-            foreach ($promoted_page as $wo['PageList']) {
-              $wo['PageList']['user_name'] = $wo['PageList']['name'];
-              echo Wo_LoadPage('sidebar/sidebar-home-page-list');
-            }
-            ?>
-            <div class="clear"></div>
-            </li>
-        </ul>
         <?php } } ?>
         <?php
 
@@ -140,24 +65,6 @@ if (!empty($user_stories)) {
             $users = Wo_UserSug(4);
             if (count($users) != 0) {
             ?>
-        <ul class="list-group" id="sidebar-user-list-container">
-            <li class="list-group-item text-muted sidebar-title-back" contenteditable="false">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #4caf50;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> <?php echo $wo['lang']['people_you_may_know'];?> <span onclick="Wo_ReloadSideBarUsers();" class="<?php echo Wo_RightToLeft('pull-right');?> refresh">
-                <i class="fa fa-repeat progress-icon" data-icon="repeat"></i>
-                </span>
-            </li>
-            <li>
-                <div class="sidebar-users-may-know-container">
-                    <?php 
-                        foreach ($users as $wo['UsersList']) {
-                            $wo['UsersList']['user_name'] = mb_substr($wo['UsersList']['name'],0,10, "utf-8");
-                            echo Wo_LoadPage('sidebar/sidebar-user-list');
-                        } 
-                        ?>
-                </div>
-                <div class="clear"></div>
-            </li>
-        </ul>
         <?php
             }
             if ($wo['config']['pages'] == 1) {
@@ -208,22 +115,6 @@ if (!empty($user_stories)) {
             </li>
         </ul>
         <?php } } ?>
-        <?php if ($wo['config']['online_sidebar'] == 1) { ?>
-        <ul class="list-group">
-            <?php $online = Wo_CountOnlineData();?>
-            <li class="list-group-item sidebar-title-back" contenteditable="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #2196F3;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> <?php echo $wo['lang']['online_users'];?> <?php echo $online;?></li>
-            <li>
-                <div class="clear"></div>
-            </li>
-        </ul>
-        <?php
-            }
-            $sidebar_ad = Wo_GetAd('sidebar', false);
-            if (!empty($sidebar_ad)) {?>
-        <ul class="list-group sidebar-ad">
-            <li><?php echo $sidebar_ad; ?></li>
-        </ul>
-        <?php } ?>
         <ul class="list-group">
             <li class="list-group-item sidebar-title-back" contenteditable="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #795548;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> <?php echo $wo['lang']['invite_your_frineds_home']; ?></li>
             <li>
@@ -239,64 +130,7 @@ if (!empty($user_stories)) {
                 </form>
             </li>
         </ul>
-        <?php if ($wo['config']['classified'] == 1): ?>
-        <div id="sidebar-latest-products" class="sidebar-latest-products">
-            <?php $get_latest_products = Wo_GetProducts(array('limit' => 6)); ?>
-            <ul class="list-group">
-                <li class="list-group-item text-muted sidebar-title-back" contenteditable="false"><a href="<?php echo Wo_SeoLink('index.php?link1=products') ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #7d8250;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg> <?php echo $wo['lang']['latest_products'] ?></a>
-                </li>
-				<div style="overflow: hidden;position: relative;width: 100%;">
-                <li class="activities-wrapper sidebar-product-slider">
-                    <?php 
-                    foreach ($get_latest_products as $key => $wo['product']) {
-                         echo Wo_LoadPage('sidebar/product-style');
-                    } 
-                    ?>
-                </li>
-				<span class="product-navigate scrollRight"><a id="scrollRight" href="javascript:;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></a></span>
-				<span class="product-navigate scrollLeft"><a id="scrollLeft" href="javascript:;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></span>
-				</div>
-            </ul>
-        </div>
-        <?php endif ?>
-        <div id="sidebar-sticky">
-            <?php $activities = Wo_GetActivities();?>
-            <ul class="list-group activity-container">
-                <li class="list-group-item text-muted sidebar-title-back" contenteditable="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ff5722;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> <?php echo $wo['lang']['latest_activities']; ?>
-                    <?php if (count($activities) > 0) { ?> <span onclick="Wo_GetMoreActivities();" data-toggle="tooltip" title= "<?php echo $wo['lang']['load_more_activities'];?>" class="<?php echo Wo_RightToLeft('pull-right');?>  refresh" >
-                    <i class="fa fa-repeat progress-icon" data-icon="repeat"></i>
-                    </span><?php } ?>
-                </li>
-                <li class="activities-wrapper" id="activities-wrapper">
-                    <?php
-                        if (count($activities) == 0) {
-                            echo '<h2><div class="no-activities text-center">' . $wo['lang']['no_activities'] . '</div><h2>';
-                        } else {
-                            foreach ($activities as $wo['activity']) {
-                                echo Wo_LoadPage('sidebar/activities-list');
-                            }
-                        }
-                        ?>
-                </li>
-                <li>
-                    <div class="no-activities center-text"></div>
-                </li>
-            </ul>
-            
-        </div>
         <?php if ($wo['config']['user_ads'] == 1): ?>
-        <div id="sidebar-sticky">
-            <?php 
-                foreach (Wo_GetSideBarAds() as $wo['sidebar-ad']) {
-                    echo Wo_LoadPage('ads/includes/sidebar-ad');
-                }
-            ?>
-            <div class="clear"></div>
-            <div>
-                
-                <div class="clear"></div>
-            </div>
-        </div>
         <?php endif; ?>
         <?php echo Wo_LoadPage('footer/sidebar-footer')?>
     </div>
